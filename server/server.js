@@ -6,7 +6,7 @@ const app = express();
 const db = require("./models");
 
 var corsOptions = {
-  origin: "http://localhost:8080"
+  origin: "http://localhost:3000"
 };
 
 app.use(cors(corsOptions));
@@ -24,7 +24,7 @@ db.sequelize.sync();
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to application." });
+  res.json({ message: "Welcome to bezkoder application." });
 });
 
 require("./routes/tutorial.routes")(app);

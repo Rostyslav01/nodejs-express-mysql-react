@@ -4,19 +4,16 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
-  if (req.body) {
+
+  if (!req.body) {
     res.status(400).send({
       message: "Can't create!"
     })
     return
   }
 
-  // const tutorial = {
-  //   title: 'Hello World',
-  //   description: 'zalypa',
-  //   published: true
-  // }
-   
+  console.log(111, req.body);
+  return
   const tutorial = {
     title: req.body.title,
     description: req.body.description,
