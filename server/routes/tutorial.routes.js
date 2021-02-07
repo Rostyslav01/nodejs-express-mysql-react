@@ -6,10 +6,16 @@ module.exports = app => {
   router.post("/", tutorials.create)
 
   // Get a current Tutorial
-  router.post("/:id", tutorials.findOne)
+  router.get("/", tutorials.findAll)
+
+  // Get a current Tutorial
+  router.get("/:id", tutorials.findOne)
+
+  // Get a current Tutorial
+  // router.post("/:id", tutorials.findOne)
 
   // Update Tutorial with id 
   router.put("/:id", tutorials.update)
 
-  app.use('api/tutorials', router)
+  app.use('/api/tutorials', router)
 }
