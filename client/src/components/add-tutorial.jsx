@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { CSVReader } from 'react-papaparse'
 import TutorialDataService from "../http-common/tutorial.service";
-// let map = new Map();
 
 export default class AddTutorial extends Component {
   // constructor(props) {
@@ -66,15 +65,20 @@ export default class AddTutorial extends Component {
   //     submitted: false
   //   });
   // }
+
   filteredArr (arr) {
+    // TODO: handle errors if not valid CVS
     return arr.filter(function (el) {
       return el != null && el !== '';
     });
   }
+
   handleOnDrop = (data) => {
     console.log('---------------------------');
     console.log(111, data);
+
     const listLength = data[0].data.length
+
     const validData = data.map(item => {
       if (!item.data) {
         return console.error(item)
@@ -82,6 +86,7 @@ export default class AddTutorial extends Component {
       
       const data = this.filteredArr(item.data)
 
+      // TODO: handle errors if not valid CVS
       return data.length === listLength ? data : null
     })
 
@@ -93,7 +98,7 @@ export default class AddTutorial extends Component {
      
         data = newValidData[0].reduce((obj, el, index) => ({
           ...obj,
-          [fieldNames[index]]: item[index],
+          [fieldNames[index].toLowerCase()]: item[index],
         }), {});
 
       }
@@ -117,21 +122,18 @@ export default class AddTutorial extends Component {
   };
   render() {
     return (
-
-
-            <CSVReader 
-              onDrop={this.handleOnDrop}
-              onError={this.handleOnError}
-              noDrag
-              style={{}}
-              config={{}}
-              addRemoveButton
-              className="btn btn-success"
-              onRemoveFile={this.handleOnRemoveFile}
-            >
-              <span>Click to upload.</span>
-            </CSVReader>
-
+        <CSVReader
+          onDrop={this.handleOnDrop}
+          onError={this.handleOnError}
+          noDrag
+          style={{}}
+          config={{}}
+          addRemoveButton
+          className="btn btn-success"
+          onRemoveFile={this.handleOnRemoveFile}
+        >
+          <span>Click to upload.</span>
+        </CSVReader>
     );
   }
 }

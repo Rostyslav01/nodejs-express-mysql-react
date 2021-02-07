@@ -1,5 +1,7 @@
 import http from "../http-common";
 
+
+// TODO: RENAME  Tutorial to smth better
 class TutorialDataService {
   getAll() {
     return http.get("/tutorials");

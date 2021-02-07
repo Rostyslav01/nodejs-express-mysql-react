@@ -12,27 +12,30 @@ exports.create = (req, res) => {
     return
   }
 
-  console.log(111, req.body);
-  return
-  const tutorial = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published || false
-  }
+  req.body.map((el, idx) => {
+      const tutorial = {
+        studentNumber: el.studentnumber,
+        firstName: el.firstname,
+        lastName: el.lastname,
+        courseNumber: el.coursenumber,
+        courseName: el.coursename,
+        grade: el.grade,
+      }
+      console.log(123456123, tutorial, idx)
 
-  Tutorial.create(tutorial)
-    .then(data => {
-      res.send(data)
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: err.message || "Some error accured while creating the Tutorial"
-      })
+      Tutorial.create(tutorial)
+          .then(data => {
+            res.send(data)
+          })
+          .catch(err => {
+            res.status(500).send({
+              message: err.message || "Some error accured while creating the Tutorial"
+            })
+          })
     })
 };
-// exports.getAll = (req, res)  => {
-//   res.send('zalypa')
-// }
+
+
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
   const title = req.query.title;
