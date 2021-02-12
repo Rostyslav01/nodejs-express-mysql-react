@@ -20,5 +20,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
+//
+// module.exports = function createNewTable (tbName) {
+//   db[tbName] = require("./tutorial.model.js")(sequelize, Sequelize);
+//   return module.exports = db;
+// }
 
 module.exports = db;

@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import AddTutorial from "./components/add-tutorial";
+import ListComponent from "./components/list.component";
 // import Tutorial from "./components/tutorial";
 // import TutorialsList from "./components/tutorials-list";
 
@@ -29,13 +30,15 @@ function App() {
           </div>
         </nav>
       </header>
-     
 
-        <div className="container mt-3">
+      {/*<ListComponent />*/}
+
+
+      <div className="container mt-3">
           <Switch>
             {/* <Route exact path={["/", "/tutorials"]} component={TutorialsList} /> */}
             <Route exact path="/add" component={AddTutorial} />
-            {/* <Route path="/tutorials/:id" component={Tutorial} /> */}
+            <Route exact path="/tutorials/" component={ListComponent} />
           </Switch>
         </div>
     </div>
